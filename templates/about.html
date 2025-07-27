@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}О проекте - AI Project{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold">О проекте</h1>
+            <p class="lead text-muted">Узнайте больше о нашем ИИ проекте</p>
+        </div>
+    </div>
+
+    <!-- Project Description -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    <h3 class="fw-bold mb-4">
+                        <i class="fas fa-info-circle text-primary me-2"></i>Описание проекта
+                    </h3>
+                    <p class="lead">
+                        Наш проект представляет собой современную веб-платформу для демонстрации и интеграции 
+                        технологий искусственного интеллекта.
+                    </p>
+                    <p>
+                        Мы создали удобный интерфейс, который позволяет пользователям взаимодействовать с ИИ 
+                        моделями через веб-браузер. Проект построен на FastAPI - современном Python фреймворке 
+                        для создания веб-приложений.
+                    </p>
+                    <p>
+                        Основные возможности включают обработку текста, анализ файлов и интеграцию с различными 
+                        ИИ сервисами. Платформа разработана с учетом лучших практик UX/UI дизайна и обеспечивает 
+                        быстрый и отзывчивый пользовательский интерфейс.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h3 class="text-center fw-bold mb-4">
+                <i class="fas fa-cogs text-primary me-2"></i>Технологический стек
+            </h3>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="tech-icon mb-3">
+                        <i class="fab fa-python fa-3x text-primary"></i>
+                    </div>
+                    <h5 class="card-title">Backend</h5>
+                    <ul class="list-unstyled">
+                        <li>FastAPI</li>
+                        <li>Python 3.8+</li>
+                        <li>Uvicorn</li>
+                        <li>Pydantic</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="tech-icon mb-3">
+                        <i class="fab fa-html5 fa-3x text-success"></i>
+                    </div>
+                    <h5 class="card-title">Frontend</h5>
+                    <ul class="list-unstyled">
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Bootstrap 5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <div class="tech-icon mb-3">
+                        <i class="fas fa-brain fa-3x text-info"></i>
+                    </div>
+                    <h5 class="card-title">ИИ Интеграция</h5>
+                    <ul class="list-unstyled">
+                        <li>Machine Learning</li>
+                        <li>NLP</li>
+                        <li>API Integration</li>
+                        <li>Custom Models</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features List -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-star me-2"></i>Ключевые особенности
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Современный веб-интерфейс
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    RESTful API
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Обработка файлов
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Асинхронная обработка
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Адаптивный дизайн
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Безопасность данных
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Масштабируемость
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-check text-success me-2"></i>
+                                    Документация API
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Plans -->
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-rocket me-2"></i>Планы развития
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Краткосрочные цели:</h6>
+                            <ul>
+                                <li>Интеграция новых ИИ моделей</li>
+                                <li>Улучшение пользовательского интерфейса</li>
+                                <li>Добавление новых форматов файлов</li>
+                                <li>Оптимизация производительности</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Долгосрочные цели:</h6>
+                            <ul>
+                                <li>Создание мобильного приложения</li>
+                                <li>Интеграция с облачными сервисами</li>
+                                <li>Разработка собственных ИИ моделей</li>
+                                <li>Международная локализация</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
