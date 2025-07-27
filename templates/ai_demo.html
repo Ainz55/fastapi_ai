@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% block title %}ИИ Демо - AI Project{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12 text-center mb-5">
+            <h1 class="display-4 fw-bold">Демонстрация ИИ</h1>
+            <p class="lead text-muted">Попробуйте возможности нашего искусственного интеллекта</p>
+        </div>
+    </div>
+
+    <!-- Text Processing Section -->
+    <div class="row mb-5">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-comments me-2"></i>Обработка текста
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="textForm">
+                        <div class="mb-3">
+                            <label for="inputText" class="form-label">Введите текст для обработки:</label>
+                            <textarea class="form-control" id="inputText" rows="4" placeholder="Введите ваш текст здесь..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-magic me-2"></i>Обработать
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Результат
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="textResult" class="min-height-200">
+                        <p class="text-muted text-center mt-4">
+                            <i class="fas fa-arrow-left fa-2x mb-3"></i><br>
+                            Результат обработки появится здесь
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Section -->
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-upload me-2"></i>Загрузка файлов
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form id="fileForm">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Выберите файл для обработки:</label>
+                            <input type="file" class="form-control" id="fileInput" accept=".txt,.pdf,.doc,.docx">
+                        </div>
+                        <button type="submit" class="btn btn-info">
+                            <i class="fas fa-upload me-2"></i>Загрузить и обработать
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        <i class="fas fa-file-alt me-2"></i>Статус файла
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div id="fileResult" class="min-height-200">
+                        <p class="text-muted text-center mt-4">
+                            <i class="fas fa-arrow-left fa-2x mb-3"></i><br>
+                            Статус обработки файла появится здесь
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="text-center mt-4" style="display: none;">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Загрузка...</span>
+        </div>
+        <p class="mt-2">Обрабатываем ваш запрос...</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const textForm = document.getElementById('textForm');
+    const fileForm = document.getElementById('fileForm');
+    const textResult = document.getElementById('textResult');
+    const fileResult = document.getElementById('fileResult');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+
+    // Text processing
+    textForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const inputText = document.getElementById('inputText').value;
+        
+        if (!inputText.trim()) {
+            alert('Пожалуйста, введите текст для обработки');
+            return;
+        }
+
+        showLoading();
+        
+        try {
+            const formData = new FormData();
+            formData.append('text', inputText);
+            
+            const response = await fetch('/api/process-text', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            textResult.innerHTML = `
+                <div class="alert alert-success">
+                    <h6>Обработанный текст:</h6>
+                    <p class="mb-0">${result.output}</p>
+                </div>
+            `;
+        } catch (error) {
+            textResult.innerHTML = `
+                <div class="alert alert-danger">
+                    <h6>Ошибка:</h6>
+                    <p class="mb-0">Произошла ошибка при обработке текста</p>
+                </div>
+            `;
+        } finally {
+            hideLoading();
+        }
+    });
+
+    // File upload
+    fileForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            alert('Пожалуйста, выберите файл для загрузки');
+            return;
+        }
+
+        showLoading();
+        
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const response = await fetch('/api/upload-file', {
+                method: 'POST',
+                body: formData
+            });
+            
+            const result = await response.json();
+            
+            fileResult.innerHTML = `
+                <div class="alert alert-success">
+                    <h6>Файл успешно загружен:</h6>
+                    <p class="mb-1"><strong>Имя файла:</strong> ${result.filename}</p>
+                    <p class="mb-1"><strong>Размер:</strong> ${result.size} байт</p>
+                    <p class="mb-0"><strong>Статус:</strong> ${result.status}</p>
+                </div>
+            `;
+        } catch (error) {
+            fileResult.innerHTML = `
+                <div class="alert alert-danger">
+                    <h6>Ошибка:</h6>
+                    <p class="mb-0">Произошла ошибка при загрузке файла</p>
+                </div>
+            `;
+        } finally {
+            hideLoading();
+        }
+    });
+
+    function showLoading() {
+        loadingSpinner.style.display = 'block';
+    }
+
+    function hideLoading() {
+        loadingSpinner.style.display = 'none';
+    }
+});
+</script>
+{% endblock %} 
