@@ -23,8 +23,8 @@
 
 1. **Клонируйте репозиторий:**
 ```bash
-git clone <your-repo-url>
-cd fastapi_for_sayt
+git clone <repo-url>
+cd fastapi_ai
 ```
 
 2. **Создайте виртуальное окружение:**
